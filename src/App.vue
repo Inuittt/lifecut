@@ -25,17 +25,14 @@ const showCamera = ref(false)
 const targetIndex = ref(0)
 
 function startNextShot() {
-  // 查找下一个未填充格子
   const nextIndex = photos.value.findIndex(p => !p)
   targetIndex.value = nextIndex !== -1 ? nextIndex : 0
   showCamera.value = true
 }
-
 function handlePhotoTaken({ photoData, index }) {
   photos.value[index] = photoData
   showCamera.value = false
 }
-
 function handleRetakeRequest(index) {
   targetIndex.value = index
   showCamera.value = true
@@ -64,4 +61,5 @@ function handleRetakeRequest(index) {
   transform: scale(1.05);
 }
 </style>
+
 
