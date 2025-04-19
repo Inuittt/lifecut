@@ -7,8 +7,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
-import { defineEmits, defineProps } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const emit = defineEmits(['photoTaken'])
 const props = defineProps({
@@ -22,7 +21,6 @@ let stream = null
 onMounted(() => {
   startCamera()
 })
-
 onUnmounted(() => {
   stopCamera()
 })
@@ -34,13 +32,11 @@ function startCamera() {
       video.value.srcObject = stream
     })
 }
-
 function stopCamera() {
   if (stream) {
     stream.getTracks().forEach(track => track.stop())
   }
 }
-
 function startCountdown() {
   countdown.value = 3
   const timer = setInterval(() => {
@@ -51,7 +47,6 @@ function startCountdown() {
     }
   }, 1000)
 }
-
 function takePhoto() {
   const canvas = document.createElement('canvas')
   canvas.width = video.value.videoWidth
